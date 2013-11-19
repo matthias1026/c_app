@@ -1,0 +1,31 @@
+<h1>Listing Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.event_date.month%>/<%=event.event_date.day%>/<%=event.event_date.year %></td>
+        <td><%= event.time%></td>
+        <td><%= link_to 'Show', event %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Create Event', newevent_path %>

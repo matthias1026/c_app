@@ -1,0 +1,32 @@
+<div class = "center hero-unit">
+	<h1>Calendar</h1>
+	<h2>
+		<li><%= link_to "Create an Event", newevent_path %></li>
+		
+		<li><%= link_to "Prev", root_path(year: @date.year, month: @date.month-1)%>
+			<%= @date.to_time.strftime('%B %Y') %>
+			<%= link_to "Next", root_path(year: @date.year, month: @date.month+1)%></li>
+		</h2>
+		<% if @events.empty? == false %>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date</th>
+					<th>Time</th>
+				</tr>
+				<tbody>
+				<% @events.each do |event| %>
+				<tr>
+					<td><%= link_to event.name, event %></td>
+					<td><%= event.event_date.strftime("%m-%d-%Y") %></td>
+					<td><%= event.time %></td>
+				<%end%>
+			</tbody>
+		</table>
+		<%end%>
+
+		<% if @events.empty? == true %>
+		There are not any events scheduled for this month.
+		<%end%>
+	</div>

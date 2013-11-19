@@ -1,4 +1,7 @@
 CApp::Application.routes.draw do
+  resources :events
+  root 'calendar_page#home'
+  match '/newevent', to: 'events#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
