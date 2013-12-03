@@ -12,14 +12,18 @@ class CalendarPageController < ApplicationController
 			@date = Date.today
 		end
 
-		@events = Event.where("event_date >= ? AND event_date <= ?", start_of_month, end_of_month)
+		@events = Event.where("event_start >= ? AND event_start < ?", start_of_month, end_of_month).order("event_start")
 	end
 
 	def start_of_month
-		@start_of_month = Date.new(@date.year, @date.month, 1)
+		@start_of_month = DateTime.new(@date.year, @date.month, 1)
 	end
 
 	def end_of_month
-		@end_of_month = Date.new(@date.year, @date.month, Time.days_in_month(@date.month, @date.year))
+		if (@date.month != 12)
+			@end_of_month = DateTime.new(@date.year, @date.month+1, 1)
+		else
+			@end_of_month = DateTime.new(@date.year+1, 1, 1)
+		end
 	end
 end

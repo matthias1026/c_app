@@ -1,27 +1,24 @@
 <h1>Listing Events</h1>
 
-<table>
+<table cellpadding="5">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th align="left">Name</th>
+      <th align="left">Start Date</th>
+      <th align="left">End Date</th>
     </tr>
   </thead>
 
   <tbody>
     <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.event_date.month%>/<%=event.event_date.day%>/<%=event.event_date.year %></td>
-        <td><%= event.time%></td>
-        <td><%= link_to 'Show', event %></td>
-      </tr>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.event_start.strftime("%m/%d/%Y")%>
+      <%= event.event_start.strftime("%I:%M %P")%></td>
+      <td><%= event.event_end.strftime("%m/%d/%Y")%>
+      <%= event.event_end.strftime("%I:%M %P")%></td>
+      <td><%= link_to 'Show', event %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>

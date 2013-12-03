@@ -3,22 +3,18 @@
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@event) do |f| %>
+    <%= simple_form_for(@event) do |f| %>
     <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+    <%= f.input :name %>
 
-      <%= f.label :date %>
-      <%= f.date_field :event_date %>
+    <%= f.input :event_start, label: 'Start Date', start_year: Date.today.year, order: [:month, :day, :year] %>
 
-      <%= f.label :time %>
-      <%= f.text_field :time %>
+    <%= f.input :event_end, label: 'End Date', start_year: Date.today.year, order: [:month, :day, :year] %>
 
-      <%= f.label :description %>
-      <%= f.text_field :description %>
+    <%= f.input :description, :as => :text %>
 
-      <%= f.submit "Create Event", class: "btn btn-large btn-primary" %>
+    <%= f.submit "Create Event", class: "btn btn-large btn-primary" %>
     <% end %>
-  </div>
+</div>
 </div>

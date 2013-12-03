@@ -1,10 +1,10 @@
 <% provide(:title, @event.name) %>
 
 <h1><%= @event.name %></h1>
-<h2><%= @event.event_date.strftime("%m-%d-%Y") %>
-	<br><%= @event.time %></h2>
+<h2> Start Time: <%= @event.event_start.strftime("%m/%d/%Y %I:%M %P") %>
+	<br> End Time: <%= @event.event_end.strftime("%m/%d/%Y %I:%M %P") %></h2>
 
-Description:<br><%= @event.description%><br>
+Description:<br><p><%= @event.description%></p>
 <%= link_to 'Edit Event', edit_event_path %>
 <%= button_to 'Delete Event', {:controller => :events,
       :action => 'destroy', :id => @event.id }, :method => :delete %>

@@ -8,25 +8,28 @@
 			<%= link_to "Next", root_path(year: @date.year, month: @date.month+1)%></li>
 		</h2>
 		<% if @events.empty? == false %>
-		<table>
+		<table align="center" cellpadding = "5">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Date</th>
-					<th>Time</th>
+					<th align="left">Name</th>
+					<th align="left">Start Date</th>
+					<th align="left">End Date</th>
 				</tr>
 				<tbody>
-				<% @events.each do |event| %>
-				<tr>
-					<td><%= link_to event.name, event %></td>
-					<td><%= event.event_date.strftime("%m-%d-%Y") %></td>
-					<td><%= event.time %></td>
-				<%end%>
-			</tbody>
-		</table>
-		<%end%>
+					<% @events.each do |event| %>
+					<tr>
+						<td align="left"><%= link_to event.name, event %></td>
+						<td><%= event.event_start.strftime("%m/%d/%Y") %>
+							<%= event.event_start.strftime("%I:%M %P") %></td>
+							<td><%= event.event_end.strftime("%m/%d/%Y") %>
+								<%= event.event_end.strftime("%I:%M %P") %></td>
 
-		<% if @events.empty? == true %>
-		There are not any events scheduled for this month.
-		<%end%>
-	</div>
+								<%end%>
+							</tbody>
+						</table>
+						<%end%>
+
+						<% if @events.empty? == true %>
+						There are not any events scheduled for this month.
+						<%end%>
+					</div>

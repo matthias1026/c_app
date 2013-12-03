@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  #before_action :create_datetime, only: [:create, :update]
 
   def new
     @event = Event.new
@@ -41,10 +42,15 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :description, :event_date, :time)
+    params.require(:event).permit(:name, :description, :event_start, :event_end)
   end
 
   def set_event
     @event = Event.find(params[:id])
   end
+
+  #def create_datetime
+  #  :event_start = DateTime.combine(x,y)
+  #  :event_end = DateTime.combine(x,y)
+  #end
 end
